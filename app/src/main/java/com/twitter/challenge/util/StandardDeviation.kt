@@ -7,8 +7,13 @@ object StandardDeviation {
         var sum = 0.0
         var mean = 0.0
         var i = 0
+        while (i< arr.size) {
+            sum += arr[i]
+            i++
+        }
         mean = sum / arr.size
         sum = 0.0
+        i = 0
         val temp = DoubleArray(arr.size)
         while (i < arr.size)
         //calculate standard deviation

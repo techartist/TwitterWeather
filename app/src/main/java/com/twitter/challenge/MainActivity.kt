@@ -1,8 +1,8 @@
 package com.twitter.challenge
 
 import android.app.ProgressDialog
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.twitter.challenge.model.TwitterWeather
 import com.twitter.challenge.util.Constants
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity(), MainVP.RequiredViewOps {
     override fun updateCurrentWeather(twitterWeather: TwitterWeather) {
         this.twitterWeather = twitterWeather
         temperature.text = getString(R.string.temperature, twitterWeather.weather.temp, TemperatureConverter.celsiusToFahrenheit(twitterWeather.weather.temp))
-        windSpeed.text = getString(R.string.wind,twitterWeather.wind.speed)
+        windSpeed.text = getString(R.string.wind, twitterWeather.wind.speed)
         if (twitterWeather.clouds.cloudiness > 50) {
             cloud.visibility = View.VISIBLE
         }
@@ -22,14 +22,14 @@ class MainActivity : AppCompatActivity(), MainVP.RequiredViewOps {
 
     override fun updateStandardDeviation(standardDeviation: Double) {
         this.standardDeviation = standardDeviation
-        standard_deviation.text = getString(R.string.deviation,standardDeviation)
+        standard_deviation.text = getString(R.string.deviation, standardDeviation)
         llStandardDeviation.visibility = View.VISIBLE
 
     }
 
     lateinit var mPresenter: MainVP.PresenterOps
     lateinit var progressDialog: ProgressDialog
-    lateinit var twitterWeather : TwitterWeather
+    lateinit var twitterWeather: TwitterWeather
     private var standardDeviation: Double = 0.0
 
     private fun setUpProgressDialog() {
@@ -70,9 +70,10 @@ class MainActivity : AppCompatActivity(), MainVP.RequiredViewOps {
         } else {
             mPresenter.getCurrentTemperature()
         }
-        btnGetStandardDeviation.setOnClickListener{
+        btnGetStandardDeviation.setOnClickListener {
             showProgressDialog()
-            mPresenter.get5DaysOfWeatherAndCalculateStandardDeviation()}
+            mPresenter.get5DaysOfWeatherAndCalculateStandardDeviation()
+        }
 
 
     }
@@ -94,6 +95,7 @@ class MainActivity : AppCompatActivity(), MainVP.RequiredViewOps {
         if (progressDialog != null && progressDialog.isShowing) {
             progressDialog.dismiss()
         }
+
     }
 
 }
